@@ -112,40 +112,44 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Contact Us</div>
                     <h1 class="display-6 mb-5">We Would Love to Hear From You</h1>
-                    <p class="mb-4">We would love to hear from you. Whether you want to partner in ministry, ask a question, or request prayer support, please send a message and it will open in your default email application so you can send directly to the ministry.</p>
-                    <form action="mailto:info@voiceoftruthinc.org" method="post" enctype="text/plain" aria-label="Email Voice of Truth Incorporated">
+                    <p class="mb-4">We would love to hear from you. Whether you want to partner in ministry, ask a question, or request prayer support, please use the form below. You will see a confirmation if Web3Forms accepts your submission; this does not confirm delivery to the ministry inbox.</p>
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" aria-label="Contact Voice of Truth Incorporated">
+                        <input type="hidden" name="access_key" value="0c15613d-92bd-4ba0-873f-7082c08efb0e">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" autocomplete="name" required>
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" autocomplete="email" required>
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" name="message" style="height: 100px" required></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary py-2 px-3 me-3">
-                                    Send Message
+                                    <span class="submit-label">Send Message</span>
                                     <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
                                 </button>
+                            </div>
+                            <div class="col-12">
+                                <p id="contact-form-status" class="mb-0" role="status" aria-live="polite" aria-atomic="true"></p>
                             </div>
                         </div>
                     </form>
@@ -227,6 +231,62 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        (function () {
+            const form = document.getElementById('contact-form');
+            const status = document.getElementById('contact-form-status');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const submitLabel = submitButton.querySelector('.submit-label');
+            const accessKeyInput = form.querySelector('[name="access_key"]');
+            let isSubmitting = false;
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                if (isSubmitting || !form.reportValidity()) {
+                    return;
+                }
+
+                if (accessKeyInput.value.trim() === '') {
+                    status.textContent = 'The contact form is not configured yet. Add your Web3Forms access key before submitting.';
+                    return;
+                }
+
+                isSubmitting = true;
+                submitButton.disabled = true;
+                submitLabel.textContent = 'Sending...';
+                form.setAttribute('aria-busy', 'true');
+                status.textContent = '';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+                    });
+                    const result = await response.json();
+
+                    if (!response.ok || result.success !== true) {
+                        status.textContent = result.message || (result.body && result.body.message) || 'Your message could not be submitted. Please try again later.';
+                        return;
+                    }
+
+                    status.textContent = 'Web3Forms accepted your submission. This does not confirm delivery to the ministry inbox.';
+                    form.reset();
+                } catch (error) {
+                    status.textContent = 'We could not submit your message because of a connection or service error. Please try again later.';
+                } finally {
+                    isSubmitting = false;
+                    submitButton.disabled = false;
+                    submitLabel.textContent = 'Send Message';
+                    form.removeAttribute('aria-busy');
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
