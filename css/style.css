@@ -735,7 +735,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-heading > p:last-child { margin-top: 1rem; margin-bottom: 0; }
 .navbar .navbar-brand { display: flex; align-items: center; gap: 1rem; }
 .brand-name { display: block; }
-.ministry-logo { width: 61px; height: 48px; flex: 0 0 auto; object-fit: contain; }
+.ministry-logo { order: -1; width: 61px; height: 48px; flex: 0 0 auto; object-fit: contain; }
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active { color: #FEEB3A; }
 .navbar button.nav-link { background: none; border: 0; text-align: left; }
