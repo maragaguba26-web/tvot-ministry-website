@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FEEB3A;
-    --secondary: #FFF0E6;
+    --primary: #92278F;
+    --secondary: #F4E9F5;
     --light: #F8F8F9;
     --dark: #001D23;
 }
@@ -103,7 +103,7 @@
     color: var(--primary);
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
         border-top: 1px solid rgba(0, 0, 0, .07);
@@ -115,7 +115,7 @@
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .navbar .nav-item .dropdown-menu {
         display: block;
         visibility: hidden;
@@ -149,7 +149,7 @@
     z-index: 1;
 }
 
-#header-carousel .carousel-caption h1 {
+#header-carousel .carousel-caption .hero-heading {
     text-shadow: 0 4px 26px rgba(0, 0, 0, .42);
     letter-spacing: -0.04em;
 }
@@ -189,7 +189,7 @@
         padding: 1.5rem;
     }
 
-    #header-carousel .carousel-caption h1 {
+    #header-carousel .carousel-caption .hero-heading {
         font-size: clamp(2.4rem, 9vw, 4rem);
         line-height: 1.05;
     }
@@ -202,7 +202,7 @@
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
-    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)), url(../img/carousel-1-jpg.webp) center center no-repeat;
     background-size: cover;
 }
 
@@ -353,7 +353,7 @@
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
@@ -433,7 +433,7 @@ html {
     white-space: normal;
 }
 
-.navbar .navbar-brand h1 {
+.navbar .navbar-brand .brand-name {
     color: #FFFFFF !important;
     font-family: "Inter", sans-serif;
     font-size: clamp(1.2rem, 2vw, 1.65rem);
@@ -441,8 +441,8 @@ html {
     letter-spacing: -.025em;
 }
 
-.navbar .navbar-brand h1 span {
-    color: var(--primary) !important;
+.navbar .navbar-brand .brand-name span {
+    color: #FEEB3A !important;
     display: block;
     margin-top: .25rem;
     font-size: .58em;
@@ -513,7 +513,7 @@ html {
     padding-top: 0 !important;
 }
 
-#header-carousel .carousel-caption h1 {
+#header-carousel .carousel-caption .hero-heading {
     font-family: "Inter", sans-serif;
     font-size: clamp(2rem, 4.5vw, 3.75rem);
     line-height: 1.15;
@@ -549,24 +549,7 @@ html {
     outline-offset: 4px;
 }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    .navbar {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-    }
-
-    .navbar .navbar-nav .nav-link {
-        padding-left: .45rem;
-        padding-right: .45rem;
-        font-size: .875rem;
-    }
-
-    .navbar .navbar-collapse > .d-lg-flex .btn-sm-square {
-        display: none !important;
-    }
-}
-
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
     .navbar {
         min-height: 80px;
         gap: 0;
@@ -578,7 +561,7 @@ html {
         margin: 0 !important;
     }
 
-    .navbar .navbar-brand h1 {
+    .navbar .navbar-brand .brand-name {
         font-size: clamp(1.1rem, 5vw, 1.5rem);
     }
 
@@ -721,4 +704,129 @@ html {
 
 .footer .copyright a:hover {
     color: var(--primary);
+}
+
+/*** Ministry identity and page layouts ***/
+body {
+    font-family: "Inter", sans-serif;
+    color: #4D5C63;
+    line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    line-height: 1.25;
+}
+
+.display-6 { font-size: clamp(1.8rem, 3vw, 2.65rem); }
+.display-4 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.section-space { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.section-soft { background: #F5F7F6; }
+.section-kicker {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.section-heading { max-width: 720px; margin: 0 auto 2.75rem; text-align: center; }
+.section-heading > p:last-child { margin-top: 1rem; margin-bottom: 0; }
+.navbar .navbar-brand { display: flex; align-items: center; gap: 1rem; }
+.brand-name { display: block; }
+.ministry-logo { width: 61px; height: 48px; flex: 0 0 auto; object-fit: contain; }
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active { color: #FEEB3A; }
+.navbar button.nav-link { background: none; border: 0; text-align: left; }
+.navbar .dropdown-toggle::after { content: ""; display: inline-block; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); vertical-align: .2em; }
+.navbar .dropdown-menu { padding: .6rem; border-radius: .65rem; box-shadow: 0 12px 35px #001D2326; }
+.navbar .nav-item .dropdown-menu.show { visibility: visible; opacity: 1; transform: none; }
+.navbar .dropdown-item { border-radius: .3rem; padding: .65rem .75rem; white-space: normal; }
+.top-bar a { color: inherit; }
+.top-bar a:hover { color: white; }
+.top-bar { font-size: .85rem; }
+.page-header .breadcrumb-item.active { color: #FEEB3A !important; }
+
+.skip-link { position: fixed; top: -100px; left: 1rem; padding: .75rem 1rem; background: white; color: #001D23; z-index: 100000; }
+.skip-link:focus { top: 1rem; }
+[id] { scroll-margin-top: 7rem; }
+:focus-visible { outline: 3px solid #B968B7; outline-offset: 4px; }
+.btn { border-radius: .45rem; font-weight: 600; padding: .85rem 1.25rem; }
+.btn span[aria-hidden] { margin-left: .5rem; }
+.btn-primary:hover { background: #731C71 !important; color: white !important; border-color: #731C71; }
+.text-link { color: #81207F; font-weight: 600; text-decoration: underline; text-underline-offset: .3em; }
+.text-link:hover { color: #5D165C; }
+.text-link span { display: inline-block; margin-left: .25rem; }
+.hero-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .85rem 1rem; }
+.hero-support { color: #FFFFFF; font-size: .95rem; text-decoration: underline; text-underline-offset: .35em; padding: .65rem; }
+.hero-support:hover { color: #FEEB3A; }
+#header-carousel .carousel-caption .section-kicker { font-size: .75rem !important; margin: 0 auto 1.25rem !important; color: #FEEB3A !important; }
+#header-carousel .carousel-caption { background: linear-gradient(180deg, #001D23B3, #001D23C9); }
+.photo-frame { padding: 0 1.5rem 1.5rem 0; position: relative; }
+.photo-frame::after { content: ""; position: absolute; inset: 1.5rem 0 0 1.5rem; border: 1px solid #92278F40; border-radius: 1rem; z-index: -1; }
+.feature-photo { width: 100%; height: auto; aspect-ratio: 1.15; object-fit: cover; border-radius: .75rem; }
+.ministry-card { background: white; height: 100%; border: 1px solid #DFE6E5; border-radius: .75rem; overflow: hidden; display: flex; flex-direction: column; }
+.ministry-card > img { width: 100%; height: auto; aspect-ratio: 1.5; object-fit: cover; }
+.card-copy { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+.card-copy > a:last-child { margin-top: auto; }
+.card-copy .section-kicker { font-size: .65rem; }
+.project-feature { border-radius: 1rem; border: 1px solid #DFE6E5; }
+.project-intro { background: #001D23; color: #D4E0E2; padding: clamp(1.75rem, 4vw, 3rem); }
+.project-intro .section-kicker { color: #FEEB3A; }
+.project-details { background: #F9F6FA; padding: clamp(1.75rem, 4vw, 3rem); }
+.project-cost { margin: 1.5rem 0; padding: 1.25rem 0; border-top: 1px solid #D9DFDD; border-bottom: 1px solid #D9DFDD; }
+.project-cost strong { display: block; font-size: clamp(1.8rem, 3vw, 2.25rem); color: #001D23; letter-spacing: -.04em; }
+.project-cost span { display: block; font-size: .85rem; }
+.visit-card, .event-card { background: white; border: 1px solid #DFE6E5; border-radius: .75rem; padding: clamp(1.5rem, 3vw, 2.25rem); height: 100%; }
+.project-status { background: #F9F6FA; }
+.visit-links, .contact-details { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; overflow-wrap: anywhere; }
+.milestones { padding-left: 1.25rem; }
+.milestones li { padding-left: .25rem; margin-bottom: .75rem; }
+.milestones li::marker { color: #92278F; }
+.event-date { color: #81207F; font-size: .8rem; font-weight: 700; margin-bottom: 1.25rem; }
+.event-location { color: #637279; font-size: .85rem; }
+.status-label { display: inline-block; font-size: .75rem; background: #F4E9F5; color: #81207F; padding: .3rem .65rem; border-radius: .25rem; }
+.gallery-photo { width: 100%; height: auto; aspect-ratio: 1.25; object-fit: cover; border-radius: .65rem; }
+figcaption { margin-top: .75rem; font-size: .85rem; color: #637279; }
+.service-item { border: 1px solid #DFE6E5; border-radius: .75rem; box-shadow: none; }
+.service-item > img { width: 64px; height: 64px; object-fit: contain; }
+.team-item { background: #F5F7F6; display: flex; flex-direction: column; }
+.team-item img { width: 100%; aspect-ratio: .9; object-fit: cover; object-position: top; }
+.team-item .team-text { height: auto !important; flex: 1; }
+.team-item:hover img { top: 0; }
+.team-item:hover .team-text { margin-top: 0; height: auto; }
+.team-item .team-text p:last-child { font-size: .9rem; }
+.footer { color: #BDCBCF !important; }
+.footer-brand { color: white; font-size: 1.5rem; line-height: 1.3; }
+.footer-brand > span { display: block; margin-top: .4rem; font-size: .65em; letter-spacing: .1em; text-transform: uppercase; color: #FEEB3A; }
+.footer-contact-link, .footer .btn.btn-link { color: #BDCBCF; }
+.footer-contact-link:hover, .footer .btn.btn-link:hover { color: white; }
+.footer .btn.btn-link { margin-bottom: .65rem; }
+.footer .copyright a { color: white; }
+.footer p { font-size: .95rem; }
+
+@media (max-width: 1199.98px) {
+    .navbar .navbar-brand { gap: .75rem; }
+    .ministry-logo { width: 46px; height: 36px; }
+    .navbar .navbar-collapse > .d-xl-flex { display: none !important; }
+    .navbar .dropdown-menu { box-shadow: none; margin-bottom: .75rem !important; }
+    .navbar .navbar-nav > .nav-link.d-xl-none { color: #FEEB3A; }
+}
+
+@media (min-width: 1200px) {
+    .navbar .navbar-collapse > .d-xl-flex .btn { color: white; border-color: #FFFFFF99; white-space: nowrap; font-size: .875rem; }
+}
+
+@media (max-width: 575.98px) {
+    .section-space .row.g-5 { --bs-gutter-x: 1.5rem; }
+    .hero-actions > .btn { font-size: .85rem; padding: .8rem 1rem; }
+    .hero-actions { gap: .75rem; }
+    .hero-support { flex-basis: 100%; }
+    #header-carousel .carousel-caption .hero-heading { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+    .section-heading { text-align: left; margin-bottom: 2rem; }
+    .photo-frame { padding: 0; }
+    .photo-frame::after { display: none; }
+    .team-item img { aspect-ratio: 1; }
+    .card-copy { padding: 1.5rem; }
 }

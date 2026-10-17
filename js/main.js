@@ -19,7 +19,7 @@
     // Fixed Navbar
     var updateNavbar = function () {
         var scrolled = $(window).scrollTop() > 45;
-        var desktop = window.matchMedia('(min-width: 992px)').matches;
+        var desktop = window.matchMedia('(min-width: 1200px)').matches;
         $('.fixed-top')
             .toggleClass('bg-dark shadow', scrolled)
             .css('top', desktop && scrolled ? -45 : 0);
