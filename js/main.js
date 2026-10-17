@@ -17,21 +17,15 @@
 
 
     // Fixed Navbar
-    $(window).scroll(function () {
-        if ($(window).width() < 992) {
-            if ($(this).scrollTop() > 45) {
-                $('.fixed-top').addClass('bg-dark shadow');
-            } else {
-                $('.fixed-top').removeClass('bg-dark shadow');
-            }
-        } else {
-            if ($(this).scrollTop() > 45) {
-                $('.fixed-top').addClass('bg-dark shadow').css('top', -45);
-            } else {
-                $('.fixed-top').removeClass('bg-dark shadow').css('top', 0);
-            }
-        }
-    });
+    var updateNavbar = function () {
+        var scrolled = $(window).scrollTop() > 45;
+        var desktop = window.matchMedia('(min-width: 992px)').matches;
+        $('.fixed-top')
+            .toggleClass('bg-dark shadow', scrolled)
+            .css('top', desktop && scrolled ? -45 : 0);
+    };
+    $(window).on('scroll resize', updateNavbar);
+    updateNavbar();
     
     
     // Back to top button
@@ -80,4 +74,5 @@
 
     
 })(jQuery);
+
 
